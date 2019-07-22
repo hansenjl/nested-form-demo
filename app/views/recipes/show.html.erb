@@ -1,0 +1,10 @@
+<h1><%= @recipe.name%></h1>
+<h2><%= @recipe.category.name%></h2>
+
+<ul>
+  <% @recipe.measurements.each do |m|%>
+    <li><strong><%= link_to m.ingredient.name, ingredient_path(m.ingredient)%></strong> - <%=m.quantity%> <%=m.unit%></li>
+  <% end %>
+</ul>
+
+<p><%= @recipe.instructions %></p>

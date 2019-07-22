@@ -10,6 +10,12 @@
   </head>
 
   <body>
+    <div>
+      <%= link_to 'Recipes', recipes_path %> |
+      <%= link_to "Create a New Recipe", new_recipe_path %> |
+      <%= link_to 'Ingredients', ingredients_path %> |
+      <%= link_to "Create a New Ingredient", new_ingredient_path %>
+    </div>
     <%= yield %>
   </body>
 </html>
