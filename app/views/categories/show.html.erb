@@ -1,0 +1,8 @@
+<h1><%= @category.name%></h1>
+
+<h3>Recipes:</h3>
+<ul>
+  <% @category.recipes.each do |r|%>
+    <li><strong><%= link_to r.name, recipe_path(r)%></strong></li>
+  <% end %>
+</ul>
