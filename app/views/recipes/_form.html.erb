@@ -25,27 +25,36 @@
     <% end %>
 
 
-
   <br>
   <br>
 
 
-  <%= f.label :ingredient_ids, "Ingredients"%>
-  <%= f.collection_check_boxes(:ingredient_ids, Ingredient.all, :id, :name)%>
+
 
   <br>
   <br>
 
-    <!-- NESTED FORM  -->
+    <!-- DOUBLE NESTED FORM  -->
     <p> Or Add New Ingredients:</p>
 
-     <%= f.fields_for :ingredients do |ing_fields|%>
+   <!-- plural measurements b/c has_many-->
+   <%= f.fields_for :measurements do |m|%>
+
+       <%= m.label :ingredient_id, "Ingredients"%>
+       <%= m.collection_select(:ingredient_id, Ingredient.all, :id, :name, include_blank: true)%>
+
+      <!-- singular ingredient b/c belongs_to-->
+      <%= m.fields_for :ingredient do |ing_fields|%>
         <%= ing_fields.label :name, "Ingredient:"%>
         <%= ing_fields.text_field :name%>
-        <br>
 
-
-     <% end %>
+      <% end %>
+      <%= m.label :quantity %>
+      <%= m.number_field :quantity %>
+      <%= m.label :unit %>
+      <%= m.text_field :unit %>
+      <br>
+    <% end %>
 
   <br>
   <br>
